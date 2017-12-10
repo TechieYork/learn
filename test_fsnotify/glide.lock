@@ -1,0 +1,17 @@
+hash: c1d1c3fca062d7d2e1f6cb2a96df271504f3338eafeb69cdc78691114894eaf0
+updated: 2016-10-28T11:02:44.219240109+08:00
+imports:
+- name: github.com/BurntSushi/toml
+  version: 99064174e013895bbd9b025c31100bd1d9b590ca
+- name: github.com/fsnotify/fsnotify
+  version: fd9ec7deca8bf46ecd2a795baaacf2b3a9be1197
+- name: github.com/urfave/cli
+  version: f614c177b70c0f0e92c368d623c8770bf337c5d6
+- name: golang.org/x/sys
+  version: c200b10b5d5e122be351b67af224adc6128af5bf
+  repo: https://golang.org/x/sys
+- name: gopkg.in/urfave/cli.v1
+  version: a14d7d367bc02b1f57d88de97926727f2d936387
+- name: gopkg.in/yaml.v2
+  version: a5b47d31c556af34a302ce5d659e6fea44d90de0
+devImports: []
