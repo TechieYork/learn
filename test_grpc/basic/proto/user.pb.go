@@ -20,6 +20,11 @@ import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
 
+import (
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
+)
+
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
@@ -151,6 +156,80 @@ func init() {
 	proto.RegisterType((*User)(nil), "tencent.user.User")
 	proto.RegisterType((*AddUserRequest)(nil), "tencent.user.AddUserRequest")
 	proto.RegisterType((*AddUserResponse)(nil), "tencent.user.AddUserResponse")
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// Client API for UserService service
+
+type UserServiceClient interface {
+	// Sends a greeting
+	AddUser(ctx context.Context, in *AddUserRequest, opts ...grpc.CallOption) (*AddUserResponse, error)
+}
+
+type userServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewUserServiceClient(cc *grpc.ClientConn) UserServiceClient {
+	return &userServiceClient{cc}
+}
+
+func (c *userServiceClient) AddUser(ctx context.Context, in *AddUserRequest, opts ...grpc.CallOption) (*AddUserResponse, error) {
+	out := new(AddUserResponse)
+	err := grpc.Invoke(ctx, "/tencent.user.UserService/AddUser", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for UserService service
+
+type UserServiceServer interface {
+	// Sends a greeting
+	AddUser(context.Context, *AddUserRequest) (*AddUserResponse, error)
+}
+
+func RegisterUserServiceServer(s *grpc.Server, srv UserServiceServer) {
+	s.RegisterService(&_UserService_serviceDesc, srv)
+}
+
+func _UserService_AddUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).AddUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tencent.user.UserService/AddUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).AddUser(ctx, req.(*AddUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _UserService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "tencent.user.UserService",
+	HandlerType: (*UserServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AddUser",
+			Handler:    _UserService_AddUser_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "user.proto",
 }
 
 func init() { proto.RegisterFile("user.proto", fileDescriptor0) }
