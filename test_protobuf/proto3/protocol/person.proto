@@ -1,5 +1,5 @@
 syntax = "proto3";
-package person;
+package person3;
 
 message Person {
         string name = 1;
