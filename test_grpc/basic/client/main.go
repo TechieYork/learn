@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -32,7 +33,7 @@ func main() {
 		return nil
 	}
 
-	// 连接
+	// Dial remote server
 	conn, err := grpc.Dial(":58888", grpc.WithInsecure(), grpc.WithUnaryInterceptor(interceptor))
 
 	if err != nil {
@@ -42,10 +43,10 @@ func main() {
 
 	defer conn.Close()
 
-	// 初始化客户端
+	// New client
 	c := pb.NewUserServiceClient(conn)
 
-	// 调用方法
+	// RPC call
 	req := new(pb.AddUserRequest)
 	req.Session = new(pb.Session)
 	req.User = new(pb.User)
@@ -62,4 +63,6 @@ func main() {
 	}
 
 	fmt.Println(resp.String())
+
+	time.Sleep(time.Second * 1)
 }
