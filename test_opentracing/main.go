@@ -9,6 +9,8 @@ import (
 	"github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	zipkin "github.com/openzipkin/zipkin-go-opentracing"
+	"github.com/opentracing/opentracing-go/log"
+	"errors"
 )
 
 var tracer opentracing.Tracer
@@ -56,7 +58,6 @@ func initZipkin(addr string, debug bool, hostPort string, serviceName string) {
 		panic(err)
 	}
 }
-
 
 func testClient(ctx context.Context) {
 	//Create root span using rpc kind
@@ -118,18 +119,19 @@ func testProducer(tracingInfo []byte) {
 		ext.SpanKindProducer,
 	}
 
-	serverSpan := tracer.StartSpan("test_opentracing_producer", opts...)
-	defer serverSpan.Finish()
+	producerSpan := tracer.StartSpan("test_opentracing_producer", opts...)
+	defer producerSpan.Finish()
 
 	time.Sleep(time.Millisecond * 1)
 
 	//Inject
 	tracingBufProducer := bytes.NewBuffer([]byte{})
-	if err := tracer.Inject(serverSpan.Context(), opentracing.Binary, tracingBufProducer); err != nil {
+	if err := tracer.Inject(producerSpan.Context(), opentracing.Binary, tracingBufProducer); err != nil {
 		fmt.Printf("grpc_opentracing: failed serializing trace information: %v\r\n", err)
 	}
 
 	go testConsumer(tracingBufProducer.Bytes())
+	time.Sleep(time.Millisecond * 5)
 }
 
 func testConsumer(tracingInfo []byte) {
@@ -145,14 +147,30 @@ func testConsumer(tracingInfo []byte) {
 		ext.SpanKindConsumer,
 	}
 
-	serverSpan := tracer.StartSpan("test_opentracing_consumer", opts...)
-	defer serverSpan.Finish()
+	consumerSpan := tracer.StartSpan("test_opentracing_consumer", opts...)
+	defer consumerSpan.Finish()
 
-	time.Sleep(time.Millisecond * 20)
+	time.Sleep(time.Millisecond * 10)
+
+	err = errors.New("test error!!!")
+	if err != nil {
+		ext.Error.Set(consumerSpan, true)
+		consumerSpan.LogFields(log.String("event", "error"), log.String("message", err.Error()))
+	}
+
+	time.Sleep(time.Millisecond * 10)
+
+	consumerSpan.LogKV("test_key", "test_value")
+
+	time.Sleep(time.Millisecond * 10)
+
+	consumerSpan.SetTag("tag_key", "tag_value")
+
+	time.Sleep(time.Millisecond * 10)
 }
 
 func main() {
-	initTracer("http://111.230.233.36:9411/api/v1/spans", "false", "localhost:58888", "demo")
+	initTracer("http://localhost:9411/api/v1/spans", "false", "localhost:58888", "demo")
 	go testClient(context.Background())
 
 	time.Sleep(time.Second * 3)
