@@ -1,0 +1,11 @@
+syntax = "proto2";
+
+package student;
+
+import "learn/test_protobuf/proto_import/protocol/proto_import/person.proto";
+
+message Student {
+    optional person.Person person = 1;
+    optional string school = 2;
+    optional string grade = 3;
+}
