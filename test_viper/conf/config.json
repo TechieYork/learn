@@ -1,0 +1,23 @@
+{
+    "server":
+    {
+        "addr":"localhost:58888"
+    },
+    "client":
+    {
+        "pool":
+        {
+            "init_conns":5,
+            "max_conns":10,
+            "idle_time":30
+        }
+    },
+    "monitor":
+    {
+        "params":["localhost:8125"]
+    },
+    "tracing":
+    {
+        "params":["http://localhost:9411/api/v1/spans", "false", "addr"]
+    }
+}
