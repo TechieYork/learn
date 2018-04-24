@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"bytes"
 
 	proto "github.com/golang/protobuf/proto"
 	jsonpb "github.com/golang/protobuf/jsonpb"
@@ -17,9 +16,6 @@ func main() {
 		Indent: "    ",
 		OrigName: true,
 	}
-
-	jsonStr := ""
-	jsonBuf := bytes.NewBufferString(jsonStr)
 
 	person := new(pb2.Person)
 
@@ -40,13 +36,13 @@ func main() {
 	person.Address.StrBlock = proto.String("Nanshan street")
 	person.Address.ZipCode = proto.String("518000")
 
-	err := m.Marshal(jsonBuf, person)
+	jsonStr, err := m.MarshalToString(person)
 
 	if err != nil {
 		fmt.Printf("Marshal failed! error:%v\r\n", err.Error())
 		return
 	}
 
-	fmt.Printf("Marshal success! json:\r\n%v\r\n", jsonBuf.String())
+	fmt.Printf("Marshal success! json:\r\n%v\r\n", jsonStr)
 }
 
