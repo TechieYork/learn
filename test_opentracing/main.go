@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"flag"
 	"time"
 	"bytes"
 	"context"
@@ -170,7 +171,13 @@ func testConsumer(tracingInfo []byte) {
 }
 
 func main() {
-	initTracer("http://localhost:9411/api/v1/spans", "false", "localhost:58888", "demo")
+	zipkin := flag.String("zipkin", "localhost:9411", "Zipkin addr, eg:localhost:9411")
+
+	flag.Parse()
+
+	reportUrl := fmt.Sprintf("http://%v/api/v1/spans", *zipkin)
+	initTracer(reportUrl, "false", "0.0.0.0:0", "test_opentracing")
+
 	go testClient(context.Background())
 
 	time.Sleep(time.Second * 3)
