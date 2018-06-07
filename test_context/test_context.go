@@ -51,9 +51,40 @@ func testContextCancel() {
 	time.Sleep(time.Second * 5)
 }
 
+func testContextTimeout() {
+	{
+		ctx, cancel := context.WithTimeout(context.Background(), time.Second * 3)
+		defer cancel()
+		defer func () {
+			fmt.Println("defer")
+		}()
+
+		go func() {
+			time.Sleep(time.Second * 5)
+			fmt.Println("after 5 s")
+		} ()
+
+		go func() {
+			for {
+				select {
+				case <- ctx.Done():
+					fmt.Println("ctx.Done()")
+					return
+				}
+			}
+		} ()
+	}
+
+	time.Sleep(time.Second * 10)
+}
+
 func main() {
 	fmt.Println("====== Test context ======")
 
+	testContextTimeout()
+
 	//testContextValue()
-	testContextCancel()
+	//testContextCancel()
+
+	time.Sleep(time.Second * 10)
 }
