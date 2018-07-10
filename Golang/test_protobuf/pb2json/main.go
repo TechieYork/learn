@@ -6,7 +6,7 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	jsonpb "github.com/golang/protobuf/jsonpb"
 
-	pb2 "learn/test_protobuf/pb2json/protocol"
+	pb2 "learn/Golang/test_protobuf/pb2json/protocol"
 )
 
 func main() {

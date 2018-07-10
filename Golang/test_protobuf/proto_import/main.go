@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gogo/protobuf/proto"
-	person "learn/test_protobuf/proto_import/protocol/proto_import"
-	student "learn/test_protobuf/proto_import/protocol/proto_main"
+	person "learn/Golang/test_protobuf/proto_import/protocol/proto_import"
+	student "learn/Golang/test_protobuf/proto_import/protocol/proto_main"
 	"fmt"
 )
 func main() {
