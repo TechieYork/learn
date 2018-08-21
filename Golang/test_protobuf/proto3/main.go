@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	pb3 "learn/test_protobuf/proto3/protocol"
+	pb3 "learn/Golang/test_protobuf/proto3/protocol"
 )
 
 func testProto3() {

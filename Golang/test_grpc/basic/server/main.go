@@ -7,7 +7,7 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	pb "learn/test_grpc/basic/proto"
+	pb "learn/Golang/test_grpc/basic/proto"
 )
 
 // Implement UserService interface
