@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package common;
+
+// The request session
+message Session {
+    string seq = 1;
+}
+
+// The response result
+message Result {
+    int32 code = 1;
+    string message = 2;
+}

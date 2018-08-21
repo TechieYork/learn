@@ -1,22 +1,12 @@
 syntax = "proto3";
 
-package tencent.user;
+import "common.proto";
+package user;
 
 // The greeting service definition.
 service UserService {
   // Sends a greeting
   rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
-}
-
-// The request session
-message Session {
-    string seq = 1;
-}
-
-// The response result
-message Result {
-    int32 code = 1;
-    string message = 2;
 }
 
 message User {
@@ -25,12 +15,12 @@ message User {
 }
 
 message AddUserRequest {
-    Session session = 1;
+    common.Session session = 1;
     User user = 2;
 }
 
 message AddUserResponse {
-    Session session = 1;
-    Result result = 2;
+    common.Session session = 1;
+    common.Result result = 2;
 }
 

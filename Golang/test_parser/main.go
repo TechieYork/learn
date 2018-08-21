@@ -22,6 +22,8 @@ func main() {
 	fmt.Printf("PackageName: %v, Syntax: %v\r\n",
 		pf.PackageName, pf.Syntax)
 
+	fmt.Printf("Dependencies: %v\r\n", pf.Dependencies)
+
 	fmt.Println("====== Print service defination ======")
 	for _, elem := range pf.Services {
 		fmt.Printf("  Name:%v\r\n  Doc:%v\r\n  Opt:%v\r\n  QName:%v\r\n",
