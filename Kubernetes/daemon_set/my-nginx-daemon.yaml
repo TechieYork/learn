@@ -1,11 +1,19 @@
+#API version
 apiVersion: extensions/v1beta1
+
+#Resource type
 kind: DaemonSet
+
+#Metadata of this daemon set
 metadata:
   name: my-nginx-daemon
   namespace: default
   labels:
     app: nginx-daemon
+
+#Specification
 spec:
+  #Using this template to create pod
   template:
     metadata:
       labels:

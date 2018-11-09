@@ -1,9 +1,19 @@
+#API version
 apiVersion: apps/v1beta1
+
+#Resource type
 kind: Deployment
+
+#Metadata of the deployment
 metadata:
   name: my-nginx-deployment
+
+#Specification
 spec:
+  #Need 2 replicas to run
   replicas: 2
+
+  #Using this template to create pod
   template:
     metadata:
       labels:

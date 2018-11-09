@@ -1,15 +1,25 @@
+#API version
 apiVersion: v1
+
+#Resource type
 kind: Pod
+
+#Metadata of this pod
 metadata:
   name: my-nginx
   labels:
     app: nginx
+
+#Specification
 spec:
+  #Use host network or not
   hostNetwork: true
+
+  #Containers information
   containers:
   - name: nginx
     image: nginx
     ports:
     - containerPort: 80
-  
+
   restartPolicy: Never
