@@ -1,0 +1,22 @@
+#API version
+apiVersion: v1
+
+#Resource type
+kind: Service
+
+#Metadata of the service
+metadata:
+  name: my-nginx-service
+
+#Specification
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+
+  selector:
+    app: nginx
+
+  sessionAffinity: None
+  type: ClusterIP
