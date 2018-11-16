@@ -1,5 +1,5 @@
 #API version
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 
 #Resource type
 kind: Deployment
@@ -25,4 +25,11 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
+        resources:
+          request:
+            cpu: "10m"
+            memory: "56Mi"
+          limits:
+            cpu: "20m"
+            memory: "128Mi"
       restartPolicy: Always

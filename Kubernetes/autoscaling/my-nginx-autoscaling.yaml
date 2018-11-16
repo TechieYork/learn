@@ -1,0 +1,37 @@
+#API version 
+apiVersion: autoscaling/v1
+
+#Resource type
+kind: HorizontalPodAutoscaler
+
+#Metadata of the Autoscaling
+metadata:
+  name: my-nginx-autoscaling
+  namespace: default
+
+#Specification
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1beta1
+    kind: Deployment
+    name: my-nginx-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 10
+#metrics:
+#- type: Resource
+#   resource:
+#     name: cpu
+#     targetAverageUtilization: 10
+#- type: Pods
+#  pods:
+#    metricName: packets-per-second
+#    targetAverageValue: 1k
+#- type: Object
+#  object:
+#    metricName: requests-per-second
+#    target:
+#      apiVersion: extensions/v1beta1
+#      kind: Ingress
+#      name: main-route
+#    targetValue: 10k

@@ -1,0 +1,31 @@
+apiVersion: v1
+items:
+- apiVersion: autoscaling/v1
+  kind: HorizontalPodAutoscaler
+  metadata:
+    annotations:
+      autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2018-11-14T06:50:14Z","reason":"SucceededGetScale","message":"the
+        HPA controller was able to get the target''s current scale"},{"type":"ScalingActive","status":"False","lastTransitionTime":"2018-11-14T06:50:15Z","reason":"FailedGetResourceMetric","message":"the
+        HPA was unable to compute the replica count: missing request for cpu on container
+        nginx in pod default/my-nginx-deployment-31893996-pm122"}]'
+    creationTimestamp: 2018-11-14T06:49:44Z
+    name: my-nginx-autoscaling
+    namespace: default
+    resourceVersion: "55228327607"
+    selfLink: /apis/autoscaling/v1/namespaces/default/horizontalpodautoscalers/my-nginx-autoscaling
+    uid: 78403d29-e7d9-11e8-a555-52540063b1c9
+  spec:
+    maxReplicas: 5
+    minReplicas: 1
+    scaleTargetRef:
+      apiVersion: apps/v1beta1
+      kind: Deployment
+      name: my-nginx-deployment
+    targetCPUUtilizationPercentage: 10
+  status:
+    currentReplicas: 2
+    desiredReplicas: 0
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
