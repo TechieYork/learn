@@ -1,0 +1,35 @@
+{
+    "contact": 
+    {
+        "Email": "test@slarty.com",
+        "Twitter":"test_twitter",
+        "FirstName": "David",
+        "LastName": "Jones",
+        "Salutation": "Mr.",
+        "Company":"Facebook",
+        "NumberOfEmployees":1000,
+        "Title":"Engineer",
+        "Industry":"IT",
+        "Phone":"0222333444",
+        "MobilePhone":"0444555666",
+        "Fax":null,
+        "Website":"https://my-website.com",
+        "MailingStreet":"",
+        "MailingCity":"",
+        "MailingState":"",
+        "MailingPostalCode":"",
+        "MailingCountry":"",
+        "owner_name":"",
+        "LeadSource":"",
+        "Status":"",
+        "LinkedIn":"",
+        "unsubscribed":false,
+        "_autopilot_session_id":"",
+        "_autopilot_list":"",
+        "notify":true,
+        "custom": 
+        {
+            "string--Test--Field": "This is a test"
+        }
+    }
+}

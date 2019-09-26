@@ -10,6 +10,10 @@ console.log(test_array);
 console.log("====== Find ======");
 console.log(test_array.indexOf(1, 0));
 
+//Some
+console.log("====== Some ======");
+console.log(test_array.some(number => number === 1));
+
 //Push or pop back
 console.log("====== Push and pop back ======");
 test_array.push(4);
@@ -56,7 +60,7 @@ for (var index = 0; index < test_array.length; index++)
 //Iteration for ES5.1 and above
 console.log("====== Iteration for ES5.1 and above ======");
 test_array.forEach(function(item, index, array){
-   console.log("index", index, " item:", item, " array:", array)
+   console.log("index", index, " item:", item, " array:", array);
 });
 
 //Iteration for ES6 and above
