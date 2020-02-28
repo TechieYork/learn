@@ -1,0 +1,70 @@
+
+# Server configuration
+#
+# server.http_addr
+#	Server's address to listen on.
+# 	eg: 
+#		localhost:58888
+#		127.0.0.1:58888
+#		eth0:58888
+#
+# server.gin_debug
+#	gin's debug flag, 0=release mode, other=debug mode
+[server]
+    http_addr="0.0.0.0:9999"
+	gin_debug=1
+
+# Client configuration
+# [client]
+
+# pprof configuration
+#
+# pprof.active
+#	Is pprof active or not, 0 = not active, otherwise active
+#
+# pprof.addr
+#	Http address to listen on for getting profile information
+#	eg:
+#		wget http://localhost:50000/debug/pprof/profile
+[pprof]
+	active = 0
+	addr="localhost:50000"
+
+# performance configuration
+# 	Performance will collect memory, gc, goroutine information periodically
+#	and output to log or statsd
+#
+# performance.active
+#	Is performance monitor active or not, 0 = not active, otherwise active
+#
+# performance.type
+#   Type to output the performance monitor information, available option [log, statsd]
+[performance]
+	active=0
+	type="log"
+
+# Monitor configuration
+#
+# monitor.params
+#	Monitor's params to init
+#	Gofra take the statsd as the default monitor system
+#	so the params has 2 parts(all in a string array)
+#		1.statsd's UDP address
+#		2.the project's name
+#	eg:
+#		params=["127.0.0.1:8125", "demo"]
+[monitor]
+    params=["127.0.0.1:8125", "user"]
+
+# Tracing configuration
+#
+# tracing.params
+#	tracing's params to init
+#	Gofra take the jaeger as the default tracing system
+#	so the params has 2 parts(all in a string array)
+#		1.jaeger's agent udp address
+#		2.the project's name
+#	eg:
+#		params=["127.0.0.1:6831", "demo"]
+[tracing]
+    params=["127.0.0.1:6831", "user"]
