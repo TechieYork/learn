@@ -11,15 +11,8 @@
 # server.gin_debug
 #	gin's debug flag, 0=release mode, other=debug mode
 [server]
-    http_addr="0.0.0.0:9998"
+    http_addr="0.0.0.0:9997"
 	gin_debug=1
-
-# User service configuration
-#
-# user.http_addr
-#   Http address of remote user service
-[user]
-    http_addr="http://0.0.0.0:9999"
 
 # Client configuration
 # [client]
@@ -34,7 +27,7 @@
 #	eg:
 #		wget http://localhost:50000/debug/pprof/profile
 [pprof]
-	active = 0
+	active=0
 	addr="localhost:50000"
 
 # performance configuration
@@ -61,7 +54,7 @@
 #	eg:
 #		params=["127.0.0.1:8125", "demo"]
 [monitor]
-    params=["127.0.0.1:8125", "comments"]
+    params=["127.0.0.1:8125", "stock"]
 
 # Tracing configuration
 #
@@ -74,4 +67,4 @@
 #	eg:
 #		params=["127.0.0.1:6831", "demo"]
 [tracing]
-    params=["127.0.0.1:6831", "comments"]
+    params=["127.0.0.1:6831", "stock"]

@@ -70,7 +70,7 @@ func POST_USER_BATCH(ctx *gin.Context) {
 func checkPOST_USER_BATCHParams(req *UserBatchReq) error {
 	for _, v := range req.UserIDs {
 		if v > int64(100000000) || v < int64(1) {
-			return fmt.Errorf("id should in the range of 1 <= id <= 100000000")
+			return fmt.Errorf("user id should in the range of 1 <= id <= 100000000")
 		}
 	}
 

@@ -45,7 +45,7 @@ func GET_COMMENTS_GOOD_ID(ctx *gin.Context) {
 	}
 
 	if goodID > int64(100000) || goodID < int64(1) {
-		err = fmt.Errorf("id should be in range of 1 <= id <= 100000000")
+		err = fmt.Errorf("good id should be in range of 1 <= id <= 100000")
 		log.Warnf("check param failed! error:%v", err.Error())
 		ctx.AbortWithStatusJSON(400, gin.H{"error": err.Error()})
 		return

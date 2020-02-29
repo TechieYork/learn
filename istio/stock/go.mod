@@ -1,9 +1,9 @@
-module user
+module stock
 
 go 1.14
 
 require (
-	github.com/DarkMetrix/gofra v0.0.0-20200220172003-52a24a50c44a
+	github.com/DarkMetrix/gofra v0.0.0-20200228040411-da818d00e36a
 	github.com/alexcesaro/statsd v2.0.0+incompatible // indirect
 	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575
 	github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd // indirect
