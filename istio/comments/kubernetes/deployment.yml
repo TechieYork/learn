@@ -1,0 +1,45 @@
+#API version
+apiVersion: apps/v1
+
+#Resource type
+kind: Deployment
+
+#Metadata of the deployment
+metadata:
+  name: comments
+  labels:
+    app: comments
+    version: v1
+
+#Specification
+spec:
+  #Need 2 replicas to run
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: comments
+      version: v1
+
+  #Using this template to create pod
+  template:
+    metadata:
+      labels:
+        app: comments
+        version: v1
+
+    spec:
+      #hostNetwork: true
+      containers:
+        - name: comments
+          image: istio-test/comments:v1
+          ports:
+            - containerPort: 19090
+          resources:
+            requests:
+              cpu: 0.2
+              memory: "56Mi"
+            limits:
+              cpu: 1
+              memory: "128Mi"
+      restartPolicy: Always
