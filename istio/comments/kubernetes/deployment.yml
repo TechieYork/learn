@@ -34,7 +34,7 @@ spec:
         - name: comments
           image: istio-test/comments:v1
           ports:
-            - containerPort: 19090
+            - containerPort: 9998
           resources:
             requests:
               cpu: 0.2

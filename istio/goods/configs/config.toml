@@ -19,14 +19,14 @@
 # stock.http_addr
 #   Http address of remote stock service
 [stock]
-    http_addr="http://0.0.0.0:9997"
+    http_addr="http://stock.default.svc.cluster.local:9997"
 
 # Comments service configuration
 #
 # comments.http_addr
 #   Http address of remote comments service
 [comments]
-    http_addr="http://0.0.0.0:9998"
+    http_addr="http://comments.default.svc.cluster.local:9998"
 
 # Client configuration
 # [client]

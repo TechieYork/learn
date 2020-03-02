@@ -1,0 +1,22 @@
+#API version
+apiVersion: v1
+
+#Resource type
+kind: Service
+
+#Metadata of the service
+metadata:
+  name: goods
+
+#Specification
+spec:
+  type: ClusterIP
+
+  ports:
+    - name: http
+      port: 9996
+      protocol: TCP
+      targetPort: 9996
+
+  selector:
+    app: goods

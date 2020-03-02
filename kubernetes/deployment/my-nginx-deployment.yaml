@@ -26,10 +26,10 @@ spec:
         ports:
         - containerPort: 80
         resources:
-          request:
-            cpu: "10m"
+          requests:
+            cpu: 0.2
             memory: "56Mi"
           limits:
-            cpu: "20m"
+            cpu: 1
             memory: "128Mi"
       restartPolicy: Always

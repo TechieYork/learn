@@ -19,7 +19,7 @@
 # user.http_addr
 #   Http address of remote user service
 [user]
-    http_addr="http://0.0.0.0:9999"
+    http_addr="http://user.default.svc.cluster.local:9999"
 
 # Client configuration
 # [client]

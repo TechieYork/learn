@@ -1,0 +1,22 @@
+#API version
+apiVersion: networking.k8s.io/v1beta1
+
+#Resource type
+kind: Ingress
+
+#Metadata of the service
+metadata:
+  name: goods
+
+#Specification
+spec:
+  backend:
+    serviceName: goods
+    servicePort: 9996
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: goods
+              servicePort: 9996

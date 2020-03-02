@@ -34,7 +34,7 @@ spec:
         - name: goods
           image: istio-test/goods:v1
           ports:
-            - containerPort: 19090
+            - containerPort: 9996
           resources:
             requests:
               cpu: 0.2

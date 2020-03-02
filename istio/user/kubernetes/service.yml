@@ -1,0 +1,22 @@
+#API version
+apiVersion: v1
+
+#Resource type
+kind: Service
+
+#Metadata of the service
+metadata:
+  name: user
+
+#Specification
+spec:
+  type: ClusterIP
+
+  ports:
+    - name: http
+      port: 9999
+      protocol: TCP
+      targetPort: 9999
+
+  selector:
+    app: user
