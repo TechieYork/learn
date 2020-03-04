@@ -6,10 +6,10 @@ kind: Deployment
 
 # metadata of the deployment
 metadata:
-  name: user
+  name: comments-v2
   labels:
-    app: user
-    version: v1
+    app: comments
+    version: v2
 
 # specification
 spec:
@@ -18,23 +18,23 @@ spec:
 
   selector:
     matchLabels:
-      app: user
-      version: v1
+      app: comments
+      version: v2
 
   # using this template to create pod
   template:
     metadata:
       labels:
-        app: user
-        version: v1
+        app: comments
+        version: v2
 
     spec:
       # hostNetwork: true
       containers:
-        - name: user
-          image: istio-test/user:v1
+        - name: comments
+          image: istio-test/comments:v1
           ports:
-            - containerPort: 9999
+            - containerPort: 9998
           resources:
             requests:
               cpu: 0.2

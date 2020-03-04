@@ -1,27 +1,27 @@
-#API version
+# API version
 apiVersion: apps/v1
 
-#Resource type
+# resource type
 kind: Deployment
 
-#Metadata of the deployment
+# metadata of the deployment
 metadata:
   name: stock
   labels:
     app: stock
     version: v1
 
-#Specification
+# specification
 spec:
-  #Need 2 replicas to run
-  replicas: 2
+  # need 1 replicas to run
+  replicas: 1
 
   selector:
     matchLabels:
       app: stock
       version: v1
 
-  #Using this template to create pod
+  # using this template to create pod
   template:
     metadata:
       labels:
@@ -29,7 +29,7 @@ spec:
         version: v1
 
     spec:
-      #hostNetwork: true
+      # hostNetwork: true
       containers:
         - name: stock
           image: istio-test/stock:v1

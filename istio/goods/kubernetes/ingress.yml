@@ -1,14 +1,14 @@
-#API version
+# API version
 apiVersion: networking.k8s.io/v1beta1
 
-#Resource type
+# resource type
 kind: Ingress
 
-#Metadata of the service
+# metadata of the service
 metadata:
   name: goods
 
-#Specification
+# specification
 spec:
   backend:
     serviceName: goods

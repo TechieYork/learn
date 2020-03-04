@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: goods
+  namespace: default
+spec:
+  gateways:
+    - goods-gateway
+  hosts:
+    - goods.default.svc.cluster.local
+  http:
+    - route:            # route all traffic to goods v1
+      - destination:
+          host: goods.default.svc.cluster.local   # interpreted as 'goods.default.svc.cluster.local'
+          subset: v1    # subset is defined in destination rule

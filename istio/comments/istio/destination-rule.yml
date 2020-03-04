@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: comments-destination-rule
+spec:
+  host: comments
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+  subsets:
+    - name: v1        # subset v1, it could be used in virtual service to define routing rule
+      labels:
+        version: v1   # all traffic from subset v1 will be routed to application with v1 label
+
+    - name: v2        # subset v2, it could be used in virtual service to define routing rule
+      labels:
+        version: v2   # all traffic from subset v2 will be routed to application with v2 label

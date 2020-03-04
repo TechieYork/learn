@@ -1,16 +1,16 @@
-#API version
+# API version
 apiVersion: v1
 
-#Resource type
+# resource type
 kind: Service
 
-#Metadata of the service
+# metadata of the service
 metadata:
   name: goods
 
-#Specification
+# specification
 spec:
-  type: ClusterIP
+  type: NodePort    # since istio's gateway failed to work, so expose NodePort to let traffic in
 
   ports:
     - name: http

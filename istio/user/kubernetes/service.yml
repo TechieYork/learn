@@ -1,14 +1,14 @@
-#API version
+# API version
 apiVersion: v1
 
-#Resource type
+# resource type
 kind: Service
 
-#Metadata of the service
+# metadata of the service
 metadata:
   name: user
 
-#Specification
+# specification
 spec:
   type: ClusterIP
 
