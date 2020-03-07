@@ -9,13 +9,13 @@ spec:
   http:
     - route:
       - destination:
-          host: comments.default.svc.cluster.local # interpreted as 'comments.default.svc.cluster.local'
+          host: comments.default.svc.cluster.local
           subset: v1     # subset is defined in destination rule
         weight: 50
 
       - destination:
-          host: comments.default.svc.cluster.local # interpreted as 'comments.default.svc.cluster.local'
+          host: comments.default.svc.cluster.local
           subset: v2     # subset is defined in destination rule
         weight: 50
 
-      timeout: 1s        # request timeout is set to 2 seconds
+      timeout: 1s        # request timeout is set to 1 seconds

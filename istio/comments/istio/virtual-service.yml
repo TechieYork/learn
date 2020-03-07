@@ -9,5 +9,5 @@ spec:
   http:
     - route:             # route all traffic to comments v1
       - destination:
-          host: comments.default.svc.cluster.local # interpreted as 'comments.default.svc.cluster.local'
+          host: comments.default.svc.cluster.local
           subset: v1     # subset is defined in destination rule

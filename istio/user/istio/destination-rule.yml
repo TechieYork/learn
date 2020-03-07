@@ -3,7 +3,7 @@ kind: DestinationRule
 metadata:
   name: user-destination-rule
 spec:
-  host: user
+  host: user.default.svc.cluster.local
   trafficPolicy:
     loadBalancer:
       simple: ROUND_ROBIN

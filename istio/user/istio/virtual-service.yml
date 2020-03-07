@@ -9,5 +9,5 @@ spec:
   http:
     - route:            # route all traffic to user v1
       - destination:
-          host: user.default.svc.cluster.local    # interpreted as 'user.default.svc.cluster.local'
+          host: user.default.svc.cluster.local
           subset: v1    # subset is defined in destination rule
