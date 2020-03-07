@@ -7,7 +7,7 @@ spec:
   gateways:
     - goods-gateway
   hosts:
-    - goods.default.svc.cluster.local
+    - "*"
   http:
     - route:            # route all traffic to goods v1
       - destination:

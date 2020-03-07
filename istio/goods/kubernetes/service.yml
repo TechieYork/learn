@@ -10,7 +10,7 @@ metadata:
 
 # specification
 spec:
-  type: NodePort    # since istio's gateway failed to work, so expose NodePort to let traffic in
+  type: ClusterIP
 
   ports:
     - name: http
