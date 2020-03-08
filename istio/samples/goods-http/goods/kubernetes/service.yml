@@ -1,0 +1,29 @@
+
+# API version
+apiVersion: v1
+
+# resource type
+kind: Service
+
+# metadata of the service
+metadata:
+  name: goods 
+
+# specification
+spec:
+  type: ClusterIP
+
+  ports:
+    - name: http
+      port: 9996
+      protocol: TCP
+      targetPort: 9996
+
+  selector:
+    app: goods
+
+  ##########################################
+  # More features and details, please visit 
+  #     'https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/'
+  # to get more information, this URL is for kubernetes v1.17 only
+  ##########################################

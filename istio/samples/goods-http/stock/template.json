@@ -1,0 +1,26 @@
+
+{
+    "author":"Techie",
+    "project":"stock",
+    "version":"v1",
+    "type":"http",
+    "server":
+    {
+        "addr":"0.0.0.0:9997"
+    },
+    "monitor_package":
+    {
+        "package":"github.com/DarkMetrix/gofra/pkg/monitor/statsd",
+        "init_param":"\"127.0.0.1:8125\", \"stock\""
+    },
+    "tracing_package":
+    {
+        "package":"github.com/DarkMetrix/gofra/pkg/tracing/jaeger",
+        "init_param":"\"127.0.0.1:6831\", \"stock\""
+    },
+    "interceptor_package":
+    {
+        "monitor_package":"github.com/DarkMetrix/gofra/pkg/grpc-utils/interceptor/statsd_interceptor",
+        "tracing_package":"github.com/DarkMetrix/gofra/pkg/grpc-utils/interceptor/opentracing_interceptor"
+    }
+}

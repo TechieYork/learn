@@ -1,0 +1,30 @@
+
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: user
+spec:
+  host: user # host will be interpreted as ${hosts}.${k8s-namespace}.svc.cluster.local in k8s environment
+
+  # traffic policy setting
+  trafficPolicy:
+    loadBalancer:
+      simple: ROUND_ROBIN
+
+  # subsets definition
+  subsets:
+    - name: v1        # subset name, it could be used in virtual service to define routing rule
+      labels:
+        version: v1   # all traffic from subset v1 will be routed to application with v1 label
+
+  ##########################################
+  # More features and details, such as:
+  #     Connection Pool
+  #     Load Balancer
+  #     Outliner Detection
+  #     TLS setting
+  #     ...
+  # Please visit 
+  #     'https://istio.io/docs/reference/config/networking/destination-rule/' 
+  # to get more information
+  ##########################################
