@@ -1,0 +1,44 @@
+
+# API version
+apiVersion: apps/v1
+
+# resource type
+kind: Deployment
+
+# metadata of the deployment
+metadata:
+  name: comments-grpc-v2
+  labels:
+    app: comments-grpc
+    version: v2
+
+# specification
+spec:
+  # replica number to run
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: comments-grpc
+      version: v2
+
+  # using this template to create pod
+  template:
+    metadata:
+      labels:
+        app: comments-grpc
+        version: v2
+
+    spec:
+      containers:
+        - name: comments-grpc
+          image: istio-test/comments-grpc:v2
+          ports:
+            - containerPort: 19998
+      restartPolicy: Always
+
+  ##########################################
+  # More features and details, please visit 
+  #     'https://kubernetes.io/docs/reference/generated/kubernetes-api/v2.17/'
+  # to get more information, this URL is for kubernetes v2.17 only
+  ##########################################

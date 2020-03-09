@@ -1,0 +1,44 @@
+
+# API version
+apiVersion: apps/v1
+
+# resource type
+kind: Deployment
+
+# metadata of the deployment
+metadata:
+  name: user-grpc
+  labels:
+    app: user-grpc
+    version: v1
+
+# specification
+spec:
+  # replica number to run
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: user-grpc
+      version: v1
+
+  # using this template to create pod
+  template:
+    metadata:
+      labels:
+        app: user-grpc
+        version: v1
+
+    spec:
+      containers:
+        - name: user-grpc
+          image: istio-test/user-grpc:v1
+          ports:
+            - containerPort: 19999
+      restartPolicy: Always
+
+  ##########################################
+  # More features and details, please visit 
+  #     'https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/'
+  # to get more information, this URL is for kubernetes v1.17 only
+  ##########################################

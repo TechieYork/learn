@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package comments;
+
+service CommentsService {
+  rpc GetCommentsByGoooID (GetCommentsByGoodIDRequest) returns (GetCommentsByGoodIDResponse) {}
+}
+
+message GetCommentsByGoodIDRequest {
+    int64 goodID = 1;
+}
+
+message CommentInfo {
+    int64 userID        = 1;
+    string userName     = 2;
+    string userPic      = 3;
+    string comments     = 4;
+}
+
+message GetCommentsByGoodIDResponse {
+    repeated CommentInfo comments = 1;
+}

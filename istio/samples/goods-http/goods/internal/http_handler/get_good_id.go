@@ -87,11 +87,6 @@ type CommentsResponse struct {
 	Comments []CommentsInfo
 }
 
-type GoodResponse struct {
-	Stock StockResponse `json:"stock"`
-	Comments CommentsResponse `json:"comments"`
-}
-
 func getStock(goodID int64) (*StockResponse, error) {
 	// get stock request
 	// init http client & send request

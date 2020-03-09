@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+    rpc GetUser (GetUserRequest) returns (GetUserResponse) {}
+    rpc GetUserBatch (GetUserBatchRequest) returns (GetUserBatchResponse) {}
+}
+
+message UserInfo {
+    int64   id      = 1;
+    string  name    = 2;
+    string  pic     = 3;
+}
+
+message GetUserRequest {
+    int64 id = 1;
+}
+
+message GetUserResponse {
+    UserInfo userInfo = 1;
+}
+
+message GetUserBatchRequest {
+    repeated int64 ids = 1;
+}
+
+message GetUserBatchResponse {
+    repeated UserInfo userInfos = 1;
+}
+

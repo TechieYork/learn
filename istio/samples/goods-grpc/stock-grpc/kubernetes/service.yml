@@ -1,0 +1,29 @@
+
+# API version
+apiVersion: v1
+
+# resource type
+kind: Service
+
+# metadata of the service
+metadata:
+  name: stock-grpc 
+
+# specification
+spec:
+  type: ClusterIP
+
+  ports:
+    - name: grpc
+      port: 19997
+      protocol: TCP
+      targetPort: 19997
+
+  selector:
+    app: stock-grpc
+
+  ##########################################
+  # More features and details, please visit 
+  #     'https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/'
+  # to get more information, this URL is for kubernetes v1.17 only
+  ##########################################

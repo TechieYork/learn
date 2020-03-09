@@ -1,0 +1,21 @@
+
+// Author : Techie
+// Time : 2020-03-08 16:43:04
+
+syntax = "proto3";
+
+package common.health.check;
+
+// the health check service definition.
+service HealthCheckService {
+    // sends a health check request
+    rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse) {}
+}
+
+message HealthCheckRequest {
+    string message = 1;
+}
+
+message HealthCheckResponse {
+    string message = 1;
+}
