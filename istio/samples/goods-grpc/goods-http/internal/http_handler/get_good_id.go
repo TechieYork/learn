@@ -9,7 +9,6 @@ package http_handler
 import (
 	"context"
 	"fmt"
-	"github.com/opentracing/opentracing-go"
 	"strconv"
 
 	// log package
@@ -19,10 +18,8 @@ import (
 	// monitor package
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
-	// tracing package
-	tracing "github.com/DarkMetrix/gofra/pkg/tracing/zipkin"
-
 	"github.com/gin-gonic/gin"
+	opentracing "github.com/opentracing/opentracing-go"
 
 	pool "github.com/DarkMetrix/gofra/pkg/grpc-utils/pool"
 	config "goods/internal/pkg/config"
@@ -37,7 +34,7 @@ func GET_GOOD_ID(ctx *gin.Context) {
 
 	// get tracing info
 	httpCarrier := opentracing.HTTPHeadersCarrier(ctx.Request.Header)
-	parentSpan, err := tracing.GetTracer().Extract(opentracing.HTTPHeaders, httpCarrier)
+	parentSpan, err := opentracing.GlobalTracer().Extract(opentracing.HTTPHeaders, httpCarrier)
 
 	grpcCtx := context.Background()
 

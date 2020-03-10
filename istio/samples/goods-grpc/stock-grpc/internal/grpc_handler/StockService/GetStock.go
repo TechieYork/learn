@@ -17,7 +17,7 @@ import (
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
 	// tracing package
-	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/zipkin"
+	// opentracing "github.com/opentracing/opentracing-go"
 
 	pb "stock/api/protobuf_spec/stock"
 )
