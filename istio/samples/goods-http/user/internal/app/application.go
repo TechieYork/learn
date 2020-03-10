@@ -26,7 +26,7 @@ import (
 	logger "github.com/DarkMetrix/gofra/pkg/logger/seelog"
 	monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 	performance "github.com/DarkMetrix/gofra/pkg/performance"
-	tracing "github.com/DarkMetrix/gofra/pkg/tracing/jaeger"
+	tracing "github.com/DarkMetrix/gofra/pkg/tracing/zipkin"
 
 	logMiddleware "github.com/DarkMetrix/gofra/pkg/gin-utils/middleware/log_middleware/seelog"
 	monitorMiddleware "github.com/DarkMetrix/gofra/pkg/gin-utils/middleware/monitor_middleware/statsd"

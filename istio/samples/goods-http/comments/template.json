@@ -15,8 +15,8 @@
     },
     "tracing_package":
     {
-        "package":"github.com/DarkMetrix/gofra/pkg/tracing/jaeger",
-        "init_param":"\"127.0.0.1:6831\", \"comments\""
+        "package":"github.com/DarkMetrix/gofra/pkg/tracing/zipkin",
+        "init_param":"\"http:\/\/127.0.0.1:9411/api/v2/spans\", \"0.0.0.0:9998\", \"comments\""
     },
     "interceptor_package":
     {

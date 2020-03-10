@@ -81,4 +81,4 @@
 #	eg:
 #		params=["127.0.0.1:6831", "demo"]
 [tracing]
-    params=["http://zipkin.istio-system:9411/api/v2/spans", "127.0.0.1:19998", "goods-http"]
+    params=["http://zipkin.istio-system:9411/api/v2/spans", "127.0.0.1:19996", "goods-http"]

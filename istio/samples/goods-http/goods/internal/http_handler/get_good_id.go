@@ -7,8 +7,8 @@
 package http_handler
 
 import (
-	"encoding/json"
 	"fmt"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -20,17 +20,29 @@ import (
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
 	// tracing package
-	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/jaeger"
+	"github.com/opentracing/opentracing-go"
 
 	"github.com/gin-gonic/gin"
 
-	"goods/internal/pkg/config"
+	config "goods/internal/pkg/config"
 )
 
 // URI(for gin use): [GET] -> "/good/:id"
 func GET_GOOD_ID(ctx *gin.Context) {
 	log.Tracef("====== GET_GOOD_ID start ======")
 
+	// get tracing info
+	httpCarrier := opentracing.HTTPHeadersCarrier(ctx.Request.Header)
+	parentSpan, err := opentracing.GlobalTracer().Extract(opentracing.HTTPHeaders, httpCarrier)
+
+	if err != nil {
+		rootSpan := opentracing.StartSpan("GET /good/${id}")
+		defer rootSpan.Finish()
+
+		parentSpan = rootSpan.Context()
+	}
+
+	// get good id
 	id := ctx.Param("id")
 
 	// check params
@@ -50,7 +62,7 @@ func GET_GOOD_ID(ctx *gin.Context) {
 	}
 
 	// get stock
-	stockResp, err := getStock(goodID)
+	stockResp, err := getStock(parentSpan, goodID)
 
 	if err != nil {
 		log.Warnf("get stock failed! error:%v", err.Error())
@@ -59,7 +71,7 @@ func GET_GOOD_ID(ctx *gin.Context) {
 	}
 
 	// get comments
-	commentsResp, err := getComments(goodID)
+	commentsResp, err := getComments(parentSpan, goodID)
 
 	if err != nil {
 		log.Warnf("get comments failed! error:%v", err.Error())
@@ -87,12 +99,27 @@ type CommentsResponse struct {
 	Comments []CommentsInfo
 }
 
-func getStock(goodID int64) (*StockResponse, error) {
+func getStock(parentSpan opentracing.SpanContext, goodID int64) (*StockResponse, error) {
 	// get stock request
 	// init http client & send request
-	httpClient := &http.Client{}
+	req, err := http.NewRequest(
+		"GET",
+		fmt.Sprintf("%v/stock/good/%v", config.GetConfig().Stock.HTTPAddr, goodID),
+		nil)
 
-	resp, err := httpClient.Get(fmt.Sprintf("%v/stock/good/%v", config.GetConfig().Stock.HTTPAddr, goodID))
+	if err != nil {
+		return nil, err
+	}
+
+	// inject parent span
+	opentracing.GlobalTracer().Inject(
+		parentSpan,
+		opentracing.HTTPHeaders,
+		opentracing.HTTPHeadersCarrier(req.Header))
+
+	// send request
+	httpClient := &http.Client{}
+	resp, err := httpClient.Do(req)
 
 	if err != nil {
 		log.Warnf("error:%v", err.Error())
@@ -133,12 +160,27 @@ func getStock(goodID int64) (*StockResponse, error) {
 	return &stockResp, nil
 }
 
-func getComments(goodID int64) (*CommentsResponse, error) {
+func getComments(parentSpan opentracing.SpanContext, goodID int64) (*CommentsResponse, error) {
 	// get stock request
 	// init http client & send request
-	httpClient := &http.Client{}
+	req, err := http.NewRequest(
+		"GET",
+		fmt.Sprintf("%v/comments/good/%v", config.GetConfig().Comments.HTTPAddr, goodID),
+		nil)
 
-	resp, err := httpClient.Get(fmt.Sprintf("%v/comments/good/%v", config.GetConfig().Comments.HTTPAddr, goodID))
+	if err != nil {
+		return nil, err
+	}
+
+	// inject parent span
+	opentracing.GlobalTracer().Inject(
+		parentSpan,
+		opentracing.HTTPHeaders,
+		opentracing.HTTPHeadersCarrier(req.Header))
+
+	// send request
+	httpClient := &http.Client{}
+	resp, err := httpClient.Do(req)
 
 	if err != nil {
 		log.Warnf("error:%v", err.Error())

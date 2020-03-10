@@ -19,7 +19,7 @@ import (
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
 	// tracing package
-	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/jaeger"
+	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/zipkin"
 
 )
 

@@ -10,6 +10,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/opentracing/opentracing-go"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -23,7 +24,7 @@ import (
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
 	// tracing package
-	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/jaeger"
+	// tracing "github.com/DarkMetrix/gofra/pkg/tracing/zipkin"
 
 	"comments/internal/pkg/config"
 	"comments/pkg/comments"
@@ -33,6 +34,18 @@ import (
 func GET_COMMENTS_GOOD_ID(ctx *gin.Context) {
 	log.Tracef("====== GET_COMMENTS_GOOD_ID start ======")
 
+	// get tracing info
+	httpCarrier := opentracing.HTTPHeadersCarrier(ctx.Request.Header)
+	parentSpan, err := opentracing.GlobalTracer().Extract(opentracing.HTTPHeaders, httpCarrier)
+
+	if err != nil {
+		rootSpan := opentracing.StartSpan("GET /good/${id}")
+		defer rootSpan.Finish()
+
+		parentSpan = rootSpan.Context()
+	}
+
+	// get good id
 	id := ctx.Param("id")
 
 	// check params
@@ -62,7 +75,7 @@ func GET_COMMENTS_GOOD_ID(ctx *gin.Context) {
 	}
 
 	// send request to user to get user name and pic
-	goodComments, err = getCommentsUserInfo(goodComments)
+	goodComments, err = getCommentsUserInfo(parentSpan, goodComments)
 
 	if err != nil {
 		log.Warnf("get comments user info failed! error:%v", err.Error())
@@ -88,7 +101,7 @@ type UserBatchResp struct {
 	UserInfos []UserInfo `json:"user_info_list"`
 }
 
-func getCommentsUserInfo(goodComments []*comments.CommentsInfo) ([]*comments.CommentsInfo, error) {
+func getCommentsUserInfo(parentSpan opentracing.SpanContext, goodComments []*comments.CommentsInfo) ([]*comments.CommentsInfo, error) {
 	// get all user id
 	var userIDs []int64
 
@@ -97,7 +110,7 @@ func getCommentsUserInfo(goodComments []*comments.CommentsInfo) ([]*comments.Com
 	}
 
 	// get user info from remote user service
-	userBatchResp, err := batchGetUserInfo(userIDs)
+	userBatchResp, err := batchGetUserInfo(parentSpan, userIDs)
 
 	if err != nil {
 		return nil, err
@@ -125,7 +138,7 @@ func getCommentsUserInfo(goodComments []*comments.CommentsInfo) ([]*comments.Com
 	return goodComments, nil
 }
 
-func batchGetUserInfo(userIDs []int64) (*UserBatchResp, error) {
+func batchGetUserInfo(parentSpan opentracing.SpanContext, userIDs []int64) (*UserBatchResp, error) {
 	// get user batch request
 	var userBatchReq UserBatchReq
 
@@ -144,11 +157,24 @@ func batchGetUserInfo(userIDs []int64) (*UserBatchResp, error) {
 	jsonBuf := bytes.NewBuffer(jsonBytes)
 
 	// init http client & send request
-	httpClient := &http.Client{}
-
-	resp, err := httpClient.Post(fmt.Sprintf("%v/user/batch", config.GetConfig().User.HTTPAddr),
-		"application/json",
+	req, err := http.NewRequest(
+		"POST",
+		fmt.Sprintf("%v/user/batch", config.GetConfig().User.HTTPAddr),
 		jsonBuf)
+
+	if err != nil {
+		return nil, err
+	}
+
+	// inject parent span
+	opentracing.GlobalTracer().Inject(
+		parentSpan,
+		opentracing.HTTPHeaders,
+		opentracing.HTTPHeadersCarrier(req.Header))
+
+	// send request
+	httpClient := &http.Client{}
+	resp, err := httpClient.Do(req)
 
 	if err != nil {
 		log.Warnf("error:%v", err.Error())
