@@ -35,6 +35,7 @@ func (this UserServiceImpl) GetUser (ctx context.Context, req *pb.GetUserRequest
 	// reply success
 	// since it's a fake server, just used to test istio features, reply with fixed data
 	resp := new(pb.GetUserResponse)
+	resp.UserInfo = &pb.UserInfo{}
 
 	resp.GetUserInfo().Id = req.GetId()
 	resp.GetUserInfo().Name = fmt.Sprintf("Foo-%v", req.GetId())
