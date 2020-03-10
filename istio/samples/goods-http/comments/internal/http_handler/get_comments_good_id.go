@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/opentracing/opentracing-go"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -24,7 +23,7 @@ import (
 	// monitor "github.com/DarkMetrix/gofra/pkg/monitor/statsd"
 
 	// tracing package
-	// opentracing "github.com/opentracing/opentracing-go"
+	opentracing "github.com/opentracing/opentracing-go"
 
 	"comments/internal/pkg/config"
 	"comments/pkg/comments"

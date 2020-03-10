@@ -1,7 +1,7 @@
 
 /**********************************
  * Author : Techie
- * Time : 2020-02-28 11:59:16
+ * Time : 2020-02-29 11:34:44
  **********************************/
 
 package http_handler
@@ -20,8 +20,8 @@ import (
 )
 
 // URI(for gin use): [POST] -> "/health"
-func POST_HEALTH(ctx *gin.Context) {
-	log.Tracef("====== POST_HEALTH start ======")
+func GET_HEALTH(ctx *gin.Context) {
+	log.Tracef("====== GET_HEALTH start ======")
 
 	/*
 	// parse request
@@ -38,10 +38,10 @@ func POST_HEALTH(ctx *gin.Context) {
 
 	// check params
 	// TODO: Check params
-	err = checkPOST_HEALTHParams(&req)
+	err = checkGET_HEALTHParams(&req)
 
 	if err != nil {
-		log.Warnf("checkPOST_HEALTHParams failed! error:%v", err.Error())
+		log.Warnf("checkGET_HEALTHParams failed! error:%v", err.Error())
 		ctx.AbortWithStatusJSON(520, gin.H{"ret":-1, "msg":fmt.Sprintf("Param invalid! error:%v", err.Error())})
 		return
 	}
@@ -52,8 +52,8 @@ func POST_HEALTH(ctx *gin.Context) {
 }
 
 /*
-// TODO: Implement checkPOST_HEALTHParams function
-func checkPOST_HEALTHParams(req *xxx) error {
+// TODO: Implement checkGET_HEALTHParams function
+func checkGET_HEALTHParams(req *xxx) error {
 	return nil
 }
 */

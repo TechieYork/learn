@@ -193,7 +193,7 @@ func (app *Application) runHTTPServer(address string) (httpCloseFunc, error) {
 
 	// add http handler
 	// !!!DO NOT EDIT!!!
-	group.POST("/health", httpHandler.POST_HEALTH)
+	group.GET("/health", httpHandler.GET_HEALTH)
 	group.GET("/user/:id", httpHandler.GET_USER_ID)
 	group.POST("/user/batch", httpHandler.POST_USER_BATCH)
 	/*@REGISTER_HTTP_STUB*/
