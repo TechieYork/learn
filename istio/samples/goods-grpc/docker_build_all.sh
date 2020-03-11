@@ -12,3 +12,6 @@ docker build ./ --tag istio-test/stock-grpc:v1
 
 cd ../goods-http
 docker build ./ --tag istio-test/goods-http:v1
+
+cd ../goods-grpc
+docker build ./ --tag istio-test/goods-grpc:v1

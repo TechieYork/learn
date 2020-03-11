@@ -11,3 +11,6 @@ cd ../../stock-grpc/scripts
 
 cd ../../goods-http/scripts
 ./build.sh
+
+cd ../../goods-grpc/scripts
+./build.sh

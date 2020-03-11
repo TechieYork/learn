@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package goods;
+
+import "goods-grpc/api/protobuf_spec/comments/comments.proto";
+
+service GoodsService {
+    rpc GetGood (GetGoodRequest) returns (GetGoodResponse) {}
+}
+
+message GetGoodRequest {
+    int64 goodID = 1;
+}
+
+message GetGoodResponse {
+    int64 goodID = 1;
+    int64 goodStock = 2;
+
+    repeated comments.CommentInfo comments = 3;
+}

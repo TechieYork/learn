@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package stock;
+
+service StockService {
+  rpc GetStock (GetStockRequest) returns (GetStockResponse) {}
+}
+
+message GetStockRequest {
+    int64 goodID = 1;
+}
+
+message GetStockResponse {
+    int64 goodID = 1;
+    int64 goodStock = 2;
+}

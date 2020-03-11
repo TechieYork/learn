@@ -4,3 +4,4 @@
 ./comments-grpc/scripts/stop.sh
 ./stock-grpc/scripts/stop.sh
 ./goods-http/scripts/stop.sh
+./goods-grpc/scripts/stop.sh

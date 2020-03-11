@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: goods-grpc-gateway
+  namespace: default
+spec:
+  gateways:
+    - goods-grpc-gateway
+  hosts:
+    - "*"
+  http:
+    - route:
+        - destination:
+            host: goods-grpc.default.svc.cluster.local
+            port:
+              number: 19995

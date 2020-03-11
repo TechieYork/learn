@@ -1,0 +1,44 @@
+
+# API version
+apiVersion: apps/v1
+
+# resource type
+kind: Deployment
+
+# metadata of the deployment
+metadata:
+  name: goods-grpc
+  labels:
+    app: goods-grpc
+    version: v1
+
+# specification
+spec:
+  # replica number to run
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: goods-grpc
+      version: v1
+
+  # using this template to create pod
+  template:
+    metadata:
+      labels:
+        app: goods-grpc
+        version: v1
+
+    spec:
+      containers:
+        - name: goods-grpc
+          image: istio-test/goods-grpc:v1
+          ports:
+            - containerPort: 19995
+      restartPolicy: Always
+
+  ##########################################
+  # More features and details, please visit 
+  #     'https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/'
+  # to get more information, this URL is for kubernetes v1.17 only
+  ##########################################
