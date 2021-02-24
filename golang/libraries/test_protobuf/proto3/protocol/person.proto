@@ -1,6 +1,8 @@
 syntax = "proto3";
 package person3;
 
+option go_package='person3';
+
 message Person {
         string name = 1;
         int32 id = 2;
@@ -17,5 +19,16 @@ message Person {
                 PhoneType type = 2;
         }
 
+        message ExtInfo {
+                string ext = 1;
+                Report report = 2;
+        }
+
+        message Report {
+                string report = 1;
+        }
+
         repeated PhoneNumber phone = 4;
+
+        ExtInfo ext = 5;
 }

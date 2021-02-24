@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/golang/protobuf/proto"
-	pb3 "learn/Golang/test_protobuf/proto3/protocol"
+	pb3 "github.com/TechieYork/learn/golang/libraries/test_protobuf/proto3/protocol"
 )
 
 func testProto3() {
@@ -50,6 +50,9 @@ func testProto3() {
 	//Get object fields
 	fmt.Println("GetId() return: ", person.GetId())
 	fmt.Println("Id return: ", person.Id)
+
+	fmt.Println("Test get nil field: ", person.GetExt())
+	fmt.Println("Test get nil field: ", person.GetExt().GetReport())
 
 	//Marshal
 	buffer, err := proto.Marshal(person)
