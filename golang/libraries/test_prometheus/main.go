@@ -4,11 +4,12 @@ import (
 	"flag"
 	"log"
 	"net/http"
-
-	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"github.com/prometheus/client_golang/prometheus"
 	"time"
 	"math"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
 var addr = flag.String("listen-address", ":58080", "The address to listen on for HTTP requests.")
@@ -25,15 +26,13 @@ func main() {
 }
 
 func reportCounter() {
-	test_counter := prometheus.NewCounter(prometheus.CounterOpts{
+	test_counter := promauto.NewCounter(prometheus.CounterOpts{
 		Namespace:"my_namespace",
 		Subsystem:"my_subsystem",
 		Name:"my_test_counter",
 		Help:"my_help",
 		ConstLabels:prometheus.Labels{"project":"test_prometheus"},
 	})
-
-	prometheus.MustRegister(test_counter)
 
 	for {
 		test_counter.Inc()
@@ -43,15 +42,13 @@ func reportCounter() {
 }
 
 func reportGauge() {
-	test_gauge := prometheus.NewGauge(prometheus.GaugeOpts{
+	test_gauge := promauto.NewGauge(prometheus.GaugeOpts{
 		Namespace:"my_namespace",
 		Subsystem:"my_subsystem",
 		Name:"my_test_gauge",
 		Help:"my_help",
 		ConstLabels:prometheus.Labels{"project":"test_prometheus"},
 	})
-
-	prometheus.MustRegister(test_gauge)
 
 	for {
 		test_gauge.Set(50.0)
@@ -61,7 +58,7 @@ func reportGauge() {
 }
 
 func reportHistogram() {
-	test_histogram := prometheus.NewHistogram(prometheus.HistogramOpts{
+	test_histogram := promauto.NewHistogram(prometheus.HistogramOpts{
 		Namespace:"my_namespace",
 		Subsystem:"my_subsystem",
 		Name:"my_test_histogram",
@@ -69,8 +66,6 @@ func reportHistogram() {
 		ConstLabels:prometheus.Labels{"project":"test_prometheus"},
 		Buckets:prometheus.LinearBuckets(20, 5, 5),
 	})
-
-	prometheus.MustRegister(test_histogram)
 
 	index := 0
 
@@ -88,7 +83,7 @@ func reportHistogram() {
 }
 
 func reportSummary() {
-	test_summary := prometheus.NewSummary(prometheus.SummaryOpts{
+	test_summary := promauto.NewSummary(prometheus.SummaryOpts{
 		Namespace:"my_namespace",
 		Subsystem:"my_subsystem",
 		Name:"my_test_summary",
@@ -96,8 +91,6 @@ func reportSummary() {
 		ConstLabels:prometheus.Labels{"project":"test_prometheus"},
 		Objectives:map[float64]float64{0.5: 0.05, 0.9: 0.01, 0.99: 0.001},
 	})
-
-	prometheus.MustRegister(test_summary)
 
 	index := 0
 
