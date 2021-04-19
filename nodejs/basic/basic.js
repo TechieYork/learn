@@ -112,23 +112,23 @@ function testVarLet()
 testVarLet();
 
 //map, filter and reduce
-console.log("====== map, filter and reduce");
+console.log("====== map, filter and reduce ======");
 
 var filtered = ["1", "2", "3"].map((value, index, array) => {
     // map, deal with each item in the array and return new array
     // if return nothing or without return statement, new array will be filled with undefined
-    console.log(value)
-    return value
+    console.log(value);
+    return value;
 }).filter((value, i, self) => {
     // filter, deal with each item in the array and return new array
     // if return value is true, then the value will be added to the new array, otherwise, it will be discarded
-    console.log([i], value, self)
-    return true
+    console.log([i], value, self);
+    return true;
 }).reduce((previousValue, currentValue, currentIndex) => {
     // reduce, deal with each item in the array and return a new item
     // such as, calculate the number, connect the strings
-    return previousValue + currentValue
-}, "")
+    return previousValue + currentValue;
+}, "");
 
-console.log(filtered)
+console.log(filtered);
 

@@ -1,9 +1,9 @@
-console.log("====== playground ======")
+console.log("====== playground ======");
 
-var fn = function foo() {}
-fn.name = "asdf"
+var fn = function foo() {};
+fn.name = "asdf";
 
-var obj = {}
+var obj = {};
 
-console.log(obj.prototype)
-console.log(fn.prototype.name)
+console.log(obj.prototype);
+console.log(fn.prototype.name);

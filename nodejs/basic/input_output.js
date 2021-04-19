@@ -9,9 +9,9 @@ var rl = readline.createInterface({
 });
 
 rl.question("How old are you?\r\n", function (answer) {
-    console.log("I am " + answer + " years old!")
+    console.log("I am " + answer + " years old!");
 });
 
 rl.on("close", function () {
-    console.log("Process exit!")
+    console.log("Process exit!");
 });
