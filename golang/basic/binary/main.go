@@ -3,16 +3,16 @@ package main
 import (
 	"bytes"
 	"encoding/binary"
-	"fmt"
 	"errors"
+	"fmt"
 )
 
 type Package struct {
 	Begin byte
-	Len uint32
-	Seq uint32
-	Data []byte
-	End byte
+	Len   uint32
+	Seq   uint32
+	Data  []byte
+	End   byte
 }
 
 func (pkg *Package) Encode() ([]byte, error) {
@@ -60,12 +60,12 @@ func (pkg *Package) Decode(data []byte) error {
 	pkg.Len = binary.BigEndian.Uint32(data[1:5])
 	pkg.Seq = binary.BigEndian.Uint32(data[5:9])
 
-	if pkg.Len != uint32(len(data) - 10) {
+	if pkg.Len != uint32(len(data)-10) {
 		return errors.New("Data length invalid!")
 	}
 
-	pkg.Data = data[9: len(data) - 1]
-	pkg.End = data[len(data) - 1]
+	pkg.Data = data[9 : len(data)-1]
+	pkg.End = data[len(data)-1]
 
 	return nil
 }
@@ -75,10 +75,10 @@ func main() {
 
 	pkg := &Package{
 		Begin: 0x4,
-		Len: uint32(len(data)),
-		Seq: 12345,
-		Data: []byte(data),
-		End: 0x5,
+		Len:   uint32(len(data)),
+		Seq:   12345,
+		Data:  []byte(data),
+		End:   0x5,
 	}
 
 	buf, err := pkg.Encode()
