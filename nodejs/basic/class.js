@@ -3,13 +3,13 @@
 //Class
 console.log("====== Class ======");
 var Person =
-    {
-        name: "",
-        age: 0,
-        sayHello: function () {
-            console.log("Hello " + this.name);
-        }
-    };
+{
+    name: "",
+    age: 0,
+    sayHello: function () {
+        console.log("Hello " + this.name);
+    }
+};
 
 //Create a class
 console.log("====== Create class with a custom function======");
@@ -42,7 +42,7 @@ test_student.sayHello();
 //Create a class for ES6 and above
 console.log("====== Create class for ES6 and above ======");
 class Teacher {
-    constructor (name) {
+    constructor(name) {
         this.name = name;
     }
 
@@ -57,7 +57,7 @@ test_teacher.sayHello();
 //Create a subclass for ES6 and above
 console.log("====== Create a subclass for ES6 and above");
 class SportTearcher extends Teacher {
-    constructor (name, sport) {
+    constructor(name, sport) {
         super(name);
         this.sport = sport;
     }

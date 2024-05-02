@@ -1,16 +1,8 @@
-'use strict';
-
-function abs(number) {
-    if (typeof number !== 'number') {
+function abs(num: number): number {
+    if (typeof num !== 'number') {
         throw 'Not a number';
     }
-
-    if (number >= 0) {
-        return number;
-    }
-    else {
-        return -number;
-    }
+    return num >= 0 ? num : -num;
 }
 
 //Test abs
@@ -21,15 +13,13 @@ console.log(abs(-3, -4, 5));
 
 try {
     console.log(abs());
-}
-catch (e) {
+} catch (e) {
     console.log(e);
 }
 
 try {
     console.log(abs("asdf"));
-}
-catch (e) {
+} catch (e) {
     console.log(e);
 }
 
