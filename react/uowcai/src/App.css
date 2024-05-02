@@ -1,0 +1,8 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+
+body { font-family: 'Roboto', sans-serif;} 

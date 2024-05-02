@@ -1,7 +1,9 @@
 .idea
 .DS_Store
+.history
 
 *.exe
 *.log
 
 vendor
+
