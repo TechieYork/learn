@@ -15,6 +15,7 @@ const Errors = {
     AuthFailed: new CustomError(2, "Auth Failed"),
     ParamsInvalid: new CustomError(3, "Params Invalid"),
     NotFound: new CustomError(4, "Not Found"),
+    Expired: new CustomError(5, "Expired"),
     Exception: new CustomError(100, "Server Exception"),
 };
 

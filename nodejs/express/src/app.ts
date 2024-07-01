@@ -4,6 +4,7 @@ import configs from "./configs/configs";
 import constants from "./configs/constants";
 import logger from "./utils/logger.utils";
 import routes from "./routes/routes";
+import sessionRoutes from "./routes/session.route";
 import usersRoutes from "./routes/users.route";
 import errorLogMiddleware from "./middlewares/errorlog.middleware";
 import errorMiddleware from "./middlewares/error.middleware";
@@ -23,6 +24,7 @@ if (node_env !== "prod") {
 
 // configure routes
 app.use("/", routes);
+app.use("/session", sessionRoutes);
 app.use("/users", usersRoutes);
 
 // configure error handling, this must be configured at the end after the routes
