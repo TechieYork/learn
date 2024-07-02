@@ -18,9 +18,14 @@ function Header() {
 
   return (
     <Layout.Header
-      style={{ display: "flex", boxShadow: "2px 2px 3px #888888", marginBottom: 0 }}
+      style={{
+        display: "flex",
+        boxShadow: "2px 2px 3px #888888",
+        marginBottom: 0,
+        zIndex: 100,
+      }}
     >
-      <Col flex={16} style={{ display: "flex", justifyContent: "flex-start" }}>
+      <Col flex={24} style={{ display: "flex", justifyContent: "flex-start" }}>
         <Space direction="horizontal" size="small">
           <Image
             src={UOW_LOGO}
@@ -37,20 +42,20 @@ function Header() {
             onClick={(item) => navigate("/" + item.key)}
           >
             <Menu.Item key="home">Home</Menu.Item>
-            <Menu.Item key="courses">Courses</Menu.Item>
-            <Menu.Item key="certification">Certification</Menu.Item>
+            {/* <Menu.Item key="courses">Courses</Menu.Item>
+            <Menu.Item key="certification">Certification</Menu.Item> */}
             <Menu.Item key="about" onClick={() => navigate("/about")}>
               About
             </Menu.Item>
           </Menu>
         </Space>
       </Col>
-      <Col flex={8} style={{ display: "flex", justifyContent: "flex-end" }}>
+      {/* <Col flex={8} style={{ display: "flex", justifyContent: "flex-end" }}>
         <Space direction="horizontal" size="small">
           <Button type="text">Login</Button>
           <Button type="text">Register</Button>
         </Space>
-      </Col>
+      </Col> */}
     </Layout.Header>
   );
 }

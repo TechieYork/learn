@@ -8,6 +8,7 @@ import notFoundReducer from '../features/not-found/notFoundSlice'
 import courseCardReducer from '../components/courseCardSlice'
 import headerReducer from '../components/headerSlice'
 import footerReducer from '../components/footerSlice'
+import pdfReducer from '../components/pdfSlice'
 
 export default configureStore({
     reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
         courseDetail: courseDetailReducer,
         header: headerReducer,
         footer: footerReducer,
+        pdf: pdfReducer,
     },
 })

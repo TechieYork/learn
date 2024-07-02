@@ -1,17 +1,22 @@
 import { Layout, Col, Row, List, Image, Typography } from "antd";
-import { UOWCAI_COURSES, UOWCAI_COURSE_DEFAULT_IMAGE } from "../../constants/Course";
+import {
+  UOWCAI_COURSES,
+  UOWCAI_COURSE_DEFAULT_IMAGE,
+} from "../../constants/Course";
 import { useSelector, useDispatch } from "react-redux";
 import { setCoursesImageLoaded } from "./coursesSlice";
 import { useNavigate } from "react-router-dom";
-const { Title, Link} = Typography;
+const { Title, Link } = Typography;
 
 function Courses() {
-  let coursesImageLoaded = useSelector((state: any) => state.courses.coursesImageLoaded);
+  let coursesImageLoaded = useSelector(
+    (state: any) => state.courses.coursesImageLoaded
+  );
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
   return (
-    <Layout.Content>
+    <Layout.Content style={{ zIndex: 100, margin: "3px" }}>
       <Row justify="center">
         <Col span={2} />
         <Col span={20}>

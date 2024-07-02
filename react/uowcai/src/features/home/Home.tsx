@@ -9,7 +9,7 @@ function Home() {
   let navigate = useNavigate();
 
   return (
-    <Layout.Content>
+    <Layout.Content style={{zIndex: 100}}>
       <Row justify="center">
         <Col span={2} />
         <Col span={20}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Layout } from "antd";
 import { Home } from "../features/home/Home";
 import { Courses } from "../features/courses/Courses";
 import { CourseDetail } from "../features/courses/CourseDetail";
@@ -14,9 +14,9 @@ import { Space } from "antd";
 
 const Main = () => {
   return (
-    <Space direction="vertical" style={{ width: "100%" }} >
+    <Layout>
       <Header />
-      <Row justify="center" style={{}}>
+      <Row justify="center">
         <Col span={"auto"} />
         <Col flex="1440px">
           <Routes>
@@ -33,7 +33,7 @@ const Main = () => {
         <Col span={"auto"} />
       </Row>
       <Footer />
-    </Space>
+    </Layout>
   );
 };
 

@@ -60,8 +60,8 @@ const CourseDetail = (props: CourseDetailProps) => {
   }
 
   return (
-    <Layout.Content>
-      <Row justify={"center"}>
+    <Layout.Content style={{ zIndex: 100, margin: "3px" }}>
+      <Row justify={"center"} style={{marginTop: "48px"}}>
         <Col span={2} />
         <Col span={20}>
           <Row justify={"center"}>
@@ -104,9 +104,12 @@ const CourseDetail = (props: CourseDetailProps) => {
                   <Paragraph>
                     <Text>{course?.description}</Text>
                   </Paragraph>
-                  <Button type="primary" onClick={
-                    () => navigate(course?.learning || "")
-                  }>Start</Button>
+                  <Button
+                    type="primary"
+                    onClick={() => navigate(course?.learning || "")}
+                  >
+                    Start
+                  </Button>
                 </div>
               </Flex>
               <Flex
@@ -130,7 +133,9 @@ const CourseDetail = (props: CourseDetailProps) => {
                   <Flex wrap="wrap" gap="middle" flex="1 0 30%">
                     <Card hoverable type="inner">
                       <Paragraph style={{ minWidth: "100px" }}>
-                        <Text italic strong>{outcome}</Text>
+                        <Text italic strong>
+                          {outcome}
+                        </Text>
                       </Paragraph>
                     </Card>
                   </Flex>
