@@ -8,40 +8,27 @@ import {
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { Pdf } from "../../components/Pdf";
 import { UOWCAI_COURSES, UOWCAI_COURSES_OUTLINE } from "../../constants/Course";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setTopic } from "./courseLearningSlice";
 const { Content, Sider } = Layout;
-
-// render UOWCAI_COURSES_OUTLINE
-// const items: MenuProps["items"] = UOWCAI_COURSES_OUTLINE.gai.outline.map(
-//   (section, index) => {
-//     const key = String(index + 1);
-
-//     return {
-//       key: `${key}-${section.start}`,
-//       label: `${key}. ${section.name}`,
-
-//       children: section.topics.map((topic, j) => {
-//         const subKey = index * 4 + j + 1;
-//         return {
-//           key: `${key}-${subKey}-${topic.page}`,
-//           label: `${key}.${subKey} ${topic.name}`,
-//         };
-//       }),
-//     };
-//   }
-// );
 
 const CourseLearning = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  // get courseID from URL
   const params = useParams();
-  const [query] = useSearchParams();
   const courseID = params.courseId;
+
+  // get course outline from storage
   const courseOutline =
     UOWCAI_COURSES_OUTLINE[courseID as keyof typeof UOWCAI_COURSES_OUTLINE];
-  const navigate = useNavigate();
+
+  // get topic state
+  const topic = useSelector((state: any) => state.courseLearning.topic);
+
+  const dispatch = useDispatch();
 
   return (
     <Layout.Content style={{ zIndex: 100, margin: "3px" }}>
@@ -85,7 +72,7 @@ const CourseLearning = () => {
               };
             })}
             onSelect={(item) =>
-              navigate(`/learning/${courseID}?page=${item.key.split("-")[2]}`)
+              dispatch(setTopic(item.key))
             }
           />
         </Sider>
@@ -95,7 +82,7 @@ const CourseLearning = () => {
               UOWCAI_COURSES.find((element) => element.id === courseID)?.pdf ||
               ""
             }
-            page={parseInt(query.get("page") || "1")}
+            page={parseInt(topic ? topic.split("-")[2] : "1-1-1")}
           />
         </Content>
       </Layout>

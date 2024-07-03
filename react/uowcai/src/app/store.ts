@@ -3,6 +3,7 @@ import aboutReducer from '../features/about/aboutSlice'
 import homeReducer from '../features/home/homeSlice'
 import coursesReducer from '../features/courses/coursesSlice'
 import courseDetailReducer from '../features/courses/courseDetailSlice'
+import courseLearningReducer from '../features/courses/courseLearningSlice'
 import certificationReducer from '../features/certification/certificationSlice'
 import notFoundReducer from '../features/not-found/notFoundSlice'
 import courseCardReducer from '../components/courseCardSlice'
@@ -19,6 +20,7 @@ export default configureStore({
         notFound: notFoundReducer,
         courseCard: courseCardReducer,
         courseDetail: courseDetailReducer,
+        courseLearning: courseLearningReducer,
         header: headerReducer,
         footer: footerReducer,
         pdf: pdfReducer,

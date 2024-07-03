@@ -21,6 +21,7 @@ function Pdf(props: PdfProps) {
 
   let loading = useSelector((state: any) => state.pdf.loading);
   let dispatch = useDispatch();
+  console.log("page", props.page, "loading", loading, "file", file);
 
   return (
     <Layout.Content
@@ -32,18 +33,19 @@ function Pdf(props: PdfProps) {
         // minWidth: window.innerWidth / 2,
       }}
     >
-      <Document file={file} onLoadSuccess={() => dispatch(setPdfLoading(false))}>
-        {loading ? (
-          <Skeleton active />
-        ) : (
-          <Page
-            pageNumber={props.page}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-            width={window.innerWidth / 2}
-            onLoadSuccess={() => dispatch(setPdfLoading(false))}
-          />
-        )}
+      <Document
+        file={file}
+        onLoadSuccess={() => dispatch(setPdfLoading(false))}
+        loading={<Skeleton active />}
+      >
+        <Page
+          pageNumber={props.page}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+          width={window.innerWidth / 2}
+          onLoadSuccess={() => dispatch(setPdfLoading(false))}
+          
+        />
       </Document>
     </Layout.Content>
   );
