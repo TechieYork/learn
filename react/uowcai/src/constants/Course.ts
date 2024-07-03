@@ -1,3 +1,5 @@
+import { start } from "repl";
+
 // UOW
 const UOW_LOGO = process.env.PUBLIC_URL + "/assets/uow-logo.png";
 
@@ -39,7 +41,9 @@ const UOWCAI_COURSES = [
       "Understand the mathematical foundations of machine learning",
       "Understand the practical applications of machine learning",
     ],
-    pdf: process.env.PUBLIC_URL + "/pdfs/A Gentle Introduction to Contemporary AI.pdf",
+    pdf:
+      process.env.PUBLIC_URL +
+      "/pdfs/A Gentle Introduction to Contemporary AI.pdf",
   },
   {
     id: "cv",
@@ -96,19 +100,87 @@ const UOWCAI_COURSES_OUTLINE = {
             page: 4,
           },
           {
-            name: "Predictive/Descriptive AI vs Generative AI (GAI)",
+            name: "Differences from Predictive/Descriptive AI",
             page: 5,
-          },
-          {
-            name: "How GAI Works? Training, prompt and inference (generation)",
-            page: 6,
-          },
-          {
-            name: "How GAI Works? From prompt to output",
-            page: 7,
           },
         ],
       },
+      {
+        name: "How GAI Works?",
+        start: 6,
+        topics: [
+          {
+            name: "Training, Prompt and Inference (generation)",
+            page: 6,
+          },
+          {
+            name: "From Prompt to Output",
+            page: 7,
+          },
+          {
+            name: "Requirements and Common Architectures",
+            page: 14,
+          },
+          {
+            name: "Diffusion Models",
+            page: 15,
+          },
+          {
+            name: "Variational Autoencoders (VAEs)",
+            page: 16,
+          },
+          {
+            name: "Generative Adversarial Networks (GANs)",
+            page: 17,
+          },
+          {
+            name: "Transformer",
+            page: 18,
+          }
+        ],
+      },
+      {
+        name: "Image Generation and Editing",
+        start: 8,
+        topics: [
+          {
+            name: "Current Trending Models",
+            page: 8,
+          },
+          {
+            name: "DALL-E",
+            page: 9,
+          },
+          {
+            name: "Example - Fake Images",
+            page: 10,
+          },
+        ],
+      },
+      {
+        name: "Music & Audio Generation",
+        start: 11,
+        topics: [
+          {
+            name: "Google's MusicLM",
+            page: 11,
+          },
+          {
+            name: "Sora",
+            page: 12,
+          },
+        ],
+      },
+      {
+        name: "Text Generation",
+        start: 13,
+        topics: [
+          {
+            name: "ChatGPT",
+            page: 13,
+          },
+        ],
+      }
     ],
   },
   ml: {
