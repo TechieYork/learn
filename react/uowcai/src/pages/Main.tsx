@@ -18,7 +18,7 @@ const Main = () => {
       <Header />
       <Row justify="center">
         <Col span={"auto"} />
-        <Col flex="1440px">
+        <Col flex="1920px">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
